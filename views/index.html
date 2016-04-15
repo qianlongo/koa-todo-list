@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>koa todolist</title>
+  <link rel="stylesheet" href="./dist/css/index.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h2>todo list</h2>
+      <div class="form-wrap">
+        <form class="form clearfox" action="/add" method="post">
+          <input type="text" name="info" placeholder="输入新的todo事项 按回车键确认" class="fl">
+          <!-- <input type="submit" value="添加" class="fr"> -->
+        </form>
+      </div>
+    </div>
+    <div class="main">
+      <div class="doing">
+        <h3>进行中</h3>
+        {% if doing.length == 0 %}
+          <div class="no-todo">
+            您还没有todo事项，请添加
+          </div>
+        {% endif %}
+        {% if doing.length %}
+          <div class="list">
+            {% for item in doing %}
+              <div class="lis">
+                <p class="info">{{ item.info }}</p>
+                <div class="lis-footer clearfox">
+                  <span class="time fl">{{ item.time }}</span>
+                  <form class="form fr" action="/del" method="post">
+                    <input type="hidden" name="id" value="{{ item.id }}">
+                    <input type="submit" class="finish" value="finish" >
+                  </form>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="finished">
+        <h3>已完成</h3>
+        {% if finished.length %}
+          <div class="list">
+            {% for item in finished %}
+              <div class="lis">
+                <p class="info">{{ item.info }}</p>
+                <div class="lis-footer clearfox">
+                  <div class="line"></div>
+                  <span class="time fl">{{ item.time }}</span>
+                  <form class="form fr" action="/back" method="post">
+                    <input type="hidden" name="id" value="{{ item.id }}">
+                    <input type="submit" class="back" value="back" >
+                  </form>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>
