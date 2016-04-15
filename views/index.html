@@ -20,11 +20,6 @@
     <div class="main">
       <div class="doing">
         <h3>进行中</h3>
-        {% if doing.length == 0 %}
-          <div class="no-todo">
-            您还没有todo事项，请添加
-          </div>
-        {% endif %}
         {% if doing.length %}
           <div class="list">
             {% for item in doing %}

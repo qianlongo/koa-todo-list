@@ -60,8 +60,8 @@ function* list() {
 function* del() {
   var item = yield parse(this);
   var index = selectId(doing, parseInt(item.id));
-  var del;
-  console.log('删除数组第%项',index);
+
+  console.log('删除数组第'+ index +'项');
   if(index != -1){
     finished.unshift(doing.splice(index, 1)[0]);
     console.log(finished);
