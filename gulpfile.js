@@ -1,21 +1,34 @@
+'use strict';
+
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync');
+var nodemon = require('gulp-nodemon');
 
-// static server
-gulp.task('server', function () {
-  var files = [
-    './views/*.html',
-    'dist/**/*.css',
-    'dist/**/*.js'
-  ];
+gulp.task('browser-sync', ['nodemon'], function() {
+  browserSync.init(null, {
+    proxy: "http://localhost:3000",
+    files: ["public/**/*.*"],
+    browser: "google chrome",
+    port: 7000,
+  });
+});
 
-  browserSync.init(files, {
-    server: {
-      baseDir: './'
+gulp.task('nodemon', function (cb) {
+
+  var started = false;
+
+  return nodemon({
+    script: 'index.js'
+  }).on('start', function () {
+    // to avoid nodemon being started multiple times
+    // thanks @matthisk
+    if (!started) {
+      cb();
+      started = true;
     }
-  })
-})
+  });
+});
 
 // scss
 gulp.task('sass', function () {
@@ -30,5 +43,5 @@ gulp.task('watch', function () {
 })
 
 gulp.task('default', function () {
-  gulp.run('server', 'sass', 'watch')
-})
+  gulp.run('browser-sync', 'sass', 'watch')
+});

@@ -38,6 +38,7 @@ function* back() {
   var item = yield parse(this);
   var index = selectId(finished, parseInt(item.id));
   var del;
+
   if(index != -1){
     doing.push(finished.splice(index, 1)[0]);
   }
@@ -46,22 +47,27 @@ function* back() {
 
 function* add() {
   var item = yield parse(this);
+
   item.time = new Date().toLocaleString();
   item.id = addId();
+  console.log('添加任务');
+  console.log(item);
   doing.unshift(item);
   this.redirect('/');
 }
 
 
 function* list() {
-  this.body = yield render('index', {doing: doing, finished: finished})
+  var sHtml = yield render('index', {doing: doing, finished: finished})
+  this.body = sHtml
 }
 
 function* del() {
   var item = yield parse(this);
   var index = selectId(doing, parseInt(item.id));
 
-  console.log('删除数组第'+ index +'项');
+  console.log('完成任务第'+ index +'项');
+
   if(index != -1){
     finished.unshift(doing.splice(index, 1)[0]);
     console.log(finished);
