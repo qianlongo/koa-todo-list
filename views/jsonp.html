@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
+</head>
+<body>
+  <button>请求后端jsonp数据</button>
+  <script>
+    $('button').on('click', () => {
+      let randomNum = Math.random()
+      $.ajax({
+        type: 'get',
+        url: '/showData',
+        data: {
+          name: 'qianlongo',
+          sex: 'boy',
+          randomNum
+        },
+        dataType: "jsonp",
+        success: function (res) {
+          console.log('success')
+          console.log(res)
+          $('<pre>').text(JSON.stringify(res)).appendTo('body')
+        },
+        error: function (res) {
+          console.log('error')
+          console.log(res)
+        }
+      })
+    })
+  </script>
+</body>
+</html>
