@@ -4,9 +4,17 @@ var path = require('path');
 var parse = require('co-body');
 var render = require('./app/lib/render.js');
 var app = koa();
+var axios = require('axios');
 
 app.use(route.get('/showJsonpPage', showJsonpPage))
 app.use(route.get('/showData', showData))
+app.use(route.get('/getBackData', getBackData));
+
+function * getBackData () {
+  var response = yield axios.get('localhost:4000/get/back/data');
+  console.log(response);
+  this.body = response;
+}
 
 function * showJsonpPage () {
   var sHtml = yield render('jsonp')
@@ -18,16 +26,17 @@ function * showData (next) {
   
   this.type = 'text/javascript'
   let callbackData = {
-    status: 0,
+    code: 200,
     message: 'ok',
     data: {
-      name,
-      sex,
+      name, 
+      sex, 
       randomNum
     }
   }
 
-  this.body = `${callback}(${JSON.stringify(callbackData)})`
+  // this.body = `${callback}(${JSON.stringify(callbackData)})`
+  this.body = callbackData
   console.log(this.query)
 }
 

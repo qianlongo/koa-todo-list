@@ -1,0 +1,50 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add axios
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  0.20.3
+
+Node version: 
+  6.9.1
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "todolist",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "browser-sync": "^2.12.3",
+      "co-body": "^4.0.0",
+      "co-views": "^2.1.0",
+      "gulp": "^3.9.1",
+      "gulp-nodemon": "^2.0.6",
+      "gulp-sass": "^2.2.0",
+      "koa": "^1.2.0",
+      "koa-rewrite": "^1.1.1",
+      "koa-route": "^2.4.2",
+      "koa-static": "^2.0.0",
+      "swig": "^1.4.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/Users/qianlong/codes/github/koa-todo-list/node_modules/configstore/node_modules/graceful-fs'
+      at Error (native)

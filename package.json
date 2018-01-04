@@ -16,8 +16,12 @@
     "gulp-nodemon": "^2.0.6",
     "gulp-sass": "^2.2.0",
     "koa": "^1.2.0",
+    "koa-rewrite": "^1.1.1",
     "koa-route": "^2.4.2",
     "koa-static": "^2.0.0",
     "swig": "^1.4.2"
+  },
+  "dependencies": {
+    "axios": "^0.17.1"
   }
 }

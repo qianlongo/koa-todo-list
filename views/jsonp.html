@@ -8,9 +8,20 @@
   <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.js"></script>
 </head>
 <body>
-  <button>请求后端jsonp数据</button>
+  <button class="jsonp">请求后端jsonp数据</button>
+  <button class="data">请求node层次后端json数组</button>
   <script>
-    $('button').on('click', () => {
+    $('.data').on('click', () => {
+      $.ajax({
+        type: 'get',
+        url: '/getBackData',
+        success (res) {
+          console.log(res)
+        }
+      });
+    })
+
+    $('.jsonp').on('click', () => {
       let randomNum = Math.random()
       $.ajax({
         type: 'get',
